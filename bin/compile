@@ -4,7 +4,8 @@ set -eo pipefail
 
 #unset GIT_DIR
 echo "compile executing.."
-
+echo $1
+echo $(cat $1/.buildpacks)
 for BUILDPACK in $(cat $1/.buildpacks); do
   echo "Buidpack found"
   dir=$(mktemp -t buildpackXXXXX)
