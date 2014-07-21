@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-set -e
+set -eo pipefail
 
-unset GIT_DIR
+#unset GIT_DIR
+echo "compile executing.."
 
 for BUILDPACK in $(cat $1/.buildpacks); do
   echo "Buidpack found"
