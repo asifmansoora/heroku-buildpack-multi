@@ -2,18 +2,12 @@
 
 set -e
 
-function indent() {
-  c='s/^/       /'
-  case $(uname) in
-    Darwin) sed -l "$c";;
-    *)      sed -u "$c";;
-  esac
-}
-
 unset GIT_DIR
 
 for BUILDPACK in $(cat $1/.buildpacks); do
+  echo "Buidpack found"
   dir=$(mktemp -t buildpackXXXXX)
+  echo $dir
   rm -rf $dir
 
   url=${BUILDPACK%#*}
