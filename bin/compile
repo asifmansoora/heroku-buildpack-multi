@@ -6,8 +6,8 @@ set -eo pipefail
 echo "compile executing.."
 echo $1
 echo $(ls $1)
-echo $(cat $1/.buildpacks)
-for BUILDPACK in $(cat $1/.buildpacks); do
+echo $(cat $1/buildpacks)
+for BUILDPACK in $(cat $1/buildpacks); do
   echo "Buidpack found"
   dir=$(mktemp -t buildpackXXXXX)
   echo $dir
