@@ -47,6 +47,7 @@ for BUILDPACK in $(cat $1/buildpacks); do
     if [ $? == 0 ]; then
       echo "=====> Detected Framework: $framework"
       $dir/bin/compile $1 $2 $3
+      echo "Path variable: $PATH"
 
       if [ $? != 0 ]; then
         echo "=====> Framework not detected"
