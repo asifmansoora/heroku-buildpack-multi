@@ -24,12 +24,15 @@ for BUILDPACK in $(cat $1/buildpacks); do
     echo "=====> Downloading Buildpack: $url"
 
     if [[ "$url" =~ \.tgz$ ]]; then
+      echo "Downloading tgz file.."
       mkdir -p "$dir"
       curl -s "$url" | tar xvz -C "$dir" >/dev/null 2>&1
     else
+      echo "Cloning from git source.."
       git clone $url $dir >/dev/null 2>&1
     fi
     cd $dir
+    echo "directory of the bp : $dir"
 
     if [ "$branch" != "" ]; then
       git checkout $branch >/dev/null 2>&1
@@ -37,6 +40,7 @@ for BUILDPACK in $(cat $1/buildpacks); do
 
     # we'll get errors later if these are needed and don't exist
     chmod -f +x $dir/bin/{detect,compile,release} || true
+    echo "Changed the directory files into executables "
 
     framework=$($dir/bin/detect $1)
     echo "Directory of the Framwork: $dir"
